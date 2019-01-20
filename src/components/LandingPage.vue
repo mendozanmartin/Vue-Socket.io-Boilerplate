@@ -54,8 +54,8 @@ export default {
         this.socket.on('MESSAGE', (data) => {
             this.messages = [...this.messages, data];
             // you can also do this.messages.push(data)
-            // console.log(data.user);
-            // console.log(data.message);
+             console.log(data.user);
+             console.log(data.message);
         });
     }
 }
