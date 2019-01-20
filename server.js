@@ -45,6 +45,6 @@ io.on('connection', (socket) => {
 });
 });
 
-app.listen(app.get('port'), function(){
+server.listen(app.get('port'), function(){
   console.log('listening on *:5000');
 });
