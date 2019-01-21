@@ -1,5 +1,5 @@
 <template>
-  <div class="card mt-3">
+  <div class="card mt-3 page">
       <div class="card-body">
           <div class="card-title">
               <h3>Chat Group</h3>
@@ -29,6 +29,7 @@
 
 <script>
 import io from 'socket.io-client';
+import router from '../router';
 
 export default {
     data() {
@@ -47,19 +48,22 @@ export default {
                 user: this.user,
                 message: this.message
             });
-            this.message = ''
+            this.message = '';
+            router.push('/');
+
         }
     },
     mounted() {
         this.socket.on('MESSAGE', (data) => {
             this.messages = [...this.messages, data];
             // you can also do this.messages.push(data)
-             console.log(data.user);
-             console.log(data.message);
+              console.log(data.user);
+              console.log(data.message);
+
         });
     }
 }
 </script>
 
-<style>
+<style scoped>
 </style>
