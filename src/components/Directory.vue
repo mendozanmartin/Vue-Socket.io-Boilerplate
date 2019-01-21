@@ -40,7 +40,6 @@ h1 {
     display: none;
   }
 }
-
 .page {
   width: 100%;
 }

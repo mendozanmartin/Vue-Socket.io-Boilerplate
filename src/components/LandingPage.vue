@@ -37,7 +37,7 @@ export default {
             user: '',
             message: '',
             messages: [],
-            socket : io('wvconsole.herokuapp.com')
+            socket : io('localhost:5000')
         }
     },
     methods: {
@@ -66,4 +66,9 @@ export default {
 </script>
 
 <style scoped>
+.page {
+  width: 100%;
+  
+}
+
 </style>
