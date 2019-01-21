@@ -33,4 +33,8 @@ body {
   animation-duration: 0.75s;
 }
 
+.row {
+  margin: 0px;
+}
+
 </style>
