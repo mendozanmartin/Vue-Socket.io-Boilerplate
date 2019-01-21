@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import LandingPage from './components/LandingPage.vue'
+import WVLounge from './components/WVLounge.vue'
 import Directory from './components/Directory'
 import Start from './components/Start'
 
@@ -19,9 +19,9 @@ export default new Router({
       component: Directory
     },
     {
-      path: '/landingpage',
-      name: 'landingpage',
-      component: LandingPage
+      path: '/lounge',
+      name: 'wvlounge',
+      component: WVLounge
     }
   ]
 })

@@ -1,12 +1,15 @@
 <template lang="html">
   <div class="page">
 
+<div>
+
   <div class="title">
   <h1>Welcome to the <b>WV</b> Console!</h1>
   </div>
 
   <div class="title">
-    <router-link to="/directory" class = "animated pulse infinite  btn btn-primary br-5" enter-active-class= "animated infinite bounce">Start</router-link>
+    <router-link to="/directory" v-on:click.native="joinRoom" class = " desktopOnly animated pulse infinite  btn btn-dark br-5" enter-active-class= "animated infinite bounce">Start</router-link>
+    <router-link to="/directory" class = "mobileOnly animated pulse infinite  btn btn-primary br-5" enter-active-class= "animated infinite bounce">Start</router-link>
   </div>
 
   <div class="text-center">
@@ -14,12 +17,52 @@
     <img src = "../assets/wvlogo.png">
   </div>
 </div>
+</div>
 
 </template>
+<script type="text/javascript">
+import io from 'socket.io-client';
 
+  export default {
+    name: 'Start',
+    data() {
+      return {
+        idNumber: Math.floor(Math.random()*999999 + 100000),
+        socket : io('localhost:5000')
+      }
+    },
+
+    methods: {
+      joinRoom: function() {
+        this.socket.emit('joinRoom', {
+          idNumber: this.idNumber
+        });
+      }
+    },
+      mounted() {
+
+
+      }
+  }
+</script>
 
 
 <style lang="css" scoped>
+
+@media only screen and (max-width: 430px){
+  .desktopOnly {
+    display: none;
+  }
+
+
+}
+@media only screen and (min-width: 430px) {
+  .mobileOnly {
+    display: none;
+  }
+
+
+}
 .row {
   margin: 0px;
 }
