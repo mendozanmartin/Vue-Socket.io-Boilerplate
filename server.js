@@ -47,16 +47,10 @@ socket.on('joinRoom', function(data) {
 });
 
 socket.on('sendID', function(data) {
-    if (data.userId == data.idNumber) {
       console.log("You have joined room: " + data.userId);
       socket.join(data.userId);
-    } else {
-      console.log("You were unable to join the room");
-
-      console.log(Object.keys(socket.rooms).filter(item => item!=socket.id));
-
-    }
-});
+      io.emit('enterLounge' , data);
+    });
 });
 
 server.listen(app.get('port'), function(){

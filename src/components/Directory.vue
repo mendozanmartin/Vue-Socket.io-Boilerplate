@@ -119,8 +119,12 @@ export default {
       this.socket.on('displayRoom', (data) => {
         document.getElementById('idNumber').innerHTML = data.idNumber;
       });
+      this.socket.on('enterLounge', (data) => {
+        if (data.userId == this.number) {
+          router.push('WVLounge');
+        }
+      });
     }
-
 }
 </script>
 
