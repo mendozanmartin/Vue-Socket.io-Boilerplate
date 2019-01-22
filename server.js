@@ -46,8 +46,8 @@ socket.on('joinRoom', function(data) {
 });
 
 socket.on('sendID', function(data) {
-      console.log("You have joined room: " + data.userId);
-      socket.join(data.userId);
+      console.log("You have joined room: " + data.idNumber);
+      socket.join(data.idNumber);
       io.emit('enterLounge' , data);
     });
 });

@@ -60,9 +60,8 @@ import io from 'socket.io-client';
   .mobileOnly {
     display: none;
   }
-
-
 }
+
 .row {
   margin: 0px;
 }
@@ -75,7 +74,10 @@ import io from 'socket.io-client';
 }
 .page {
   width: 100%;
-}
+  background-color: #7c93dd;
+  height: 100%;
+  }
+
 
 .btn {
   width: 150px;
