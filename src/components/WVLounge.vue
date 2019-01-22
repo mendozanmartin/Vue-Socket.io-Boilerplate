@@ -26,7 +26,7 @@
     </div>
     <div class="d-flex justify-content-center">
       <img src="../assets/arrow_left.png" class = "mr-2">
-      <button type="button" name="button" class = "btn btn-dark">Select</button>
+      <button type="button" name="button" class = "btn btn-dark p-3">Select</button>
       <img src="../assets/arrow_right.png" class = "ml-2">
     </div>
     <div class="d-flex justify-content-center ">
