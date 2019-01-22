@@ -1,24 +1,9 @@
-<template>
+<template lang="html">
   <div class="page text-center">
-    <div class = "text-center bg-primary text-white navigation">
-      <h1 class ="p-3"><b>WV </b>CONSOLE</h1>
-    </div>
-    <div class="desktopOnly">
 
-    <h1>Welcome to the WV Lounge.</h1>
-    <h3>Choose between many of our games.</h3>
-    <div class="d-flex justify-content-around groupGames">
-      <div class="gameContainers text-center"><h3><b>Game 1</b></h3></div>
-      <div class="gameContainers text-center"><h3><b>Game 2</b></h3></div>
-      <div class="gameContainers text-center"><h3><b>Game 3</b></h3></div>
-      <div class="gameContainers text-center"><h3><b>Game 4</b></h3></div>
-    </div>
-    <div class="d-flex justify-content-end">
-      <div class="featuredGame"><h2><b>Featured Game</b></h2></div>
-    </div>
-
+  <div class = "text-center bg-primary text-white navigation shadow-lg">
+    <h1 class ="p-3"><b>WV </b>CONSOLE</h1>
   </div>
-
   <div class="mobileOnly">
     <h4 class = "mb-5">Press the arrow keys to navigate on the Desktop/TV screen!</h4>
     <div class="d-flex justify-content-center mt-5">
@@ -33,13 +18,15 @@
       <img src="../assets/arrow_down.png">
     </div>
   </div>
-
-
 </div>
-
 </template>
 
-<style scoped>
+<script>
+export default {
+}
+</script>
+
+<style lang="css" scoped>
 .page {
   width: 100%;
   text-align: center;
@@ -94,6 +81,5 @@
 button {
   margin: 3vw;
 }
-
 
 </style>

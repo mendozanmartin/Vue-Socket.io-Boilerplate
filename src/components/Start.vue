@@ -8,8 +8,8 @@
   </div>
 
   <div class="title">
-    <router-link to="/directory" v-on:click.native="joinRoom" class = " desktopOnly animated pulse infinite  btn btn-dark br-5" enter-active-class= "animated infinite bounce">Start</router-link>
-    <router-link to="/directory" class = "mobileOnly animated pulse infinite  btn btn-primary br-5" enter-active-class= "animated infinite bounce">Start</router-link>
+    <router-link to="/desktopdirectory" v-on:click.native="desktopJoin" class = " desktopOnly animated pulse infinite  btn btn-dark br-5" enter-active-class= "animated infinite bounce">Start</router-link>
+    <router-link to="/mobiledirectory" class = "mobileOnly animated pulse infinite  btn btn-primary br-5" enter-active-class= "animated infinite bounce">Start</router-link>
   </div>
 
   <div class="text-center">
@@ -28,20 +28,19 @@ import io from 'socket.io-client';
     data() {
       return {
         idNumber: Math.floor(Math.random()*999999 + 100000),
-        socket : io('wvconsole.herokuapp.com')
+        socket : io('localhost:5000')
       }
     },
-
     methods: {
-      joinRoom: function() {
-        this.socket.emit('joinRoom', {
+      desktopJoin: function() {
+        this.socket.emit('desktopJoin', {
           idNumber: this.idNumber
         });
+        window.desktopRoomNumber = this.idNumber;
+        console.log(window.desktopRoomNumber);
       }
     },
       mounted() {
-
-
       }
   }
 </script>

@@ -39,16 +39,19 @@ app.use(serveStatic(__dirname + "/dist"));
 
 io.on('connection', (socket) => {
 
-socket.on('joinRoom', function(data) {
+socket.on('desktopJoin', function(data) {
   socket.join(data.idNumber);
-  io.emit('displayRoom', data);
   console.log("Desktop/TV has connected to room: " + data.idNumber);
 });
 
 socket.on('sendID', function(data) {
-      console.log("You have joined room: " + data.idNumber);
-      socket.join(data.idNumber);
-      io.emit('enterLounge' , data);
+      if (io.sockets.adapter.rooms[data.idNumber] == null) {
+        console.log("this room does not exist");
+      } else {
+        socket.join(data.idNumber);
+        console.log("You have joined room: " + data.idNumber);
+        io.emit("sendID", data);
+      }
     });
 });
 

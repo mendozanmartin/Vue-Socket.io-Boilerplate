@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import WVLounge from './components/WVLounge.vue'
-import Directory from './components/Directory'
 import Start from './components/Start'
+import DesktopDirectory from './components/DesktopDirectory'
+import MobileDirectory from './components/MobileDirectory'
+import DesktopLounge from './components/DesktopLounge'
+import MobileLounge from './components/MobileLounge'
+
 
 Vue.use(Router)
 
@@ -10,18 +13,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'start',
       component: Start
     },
     {
-      path: '/directory',
-      name: 'directory',
-      component: Directory
+      path: '/mobiledirectory',
+      component: MobileDirectory
     },
     {
-      path: '/lounge',
-      name: 'wvlounge',
-      component: WVLounge
+      path: '/desktopdirectory',
+      component: DesktopDirectory
+    },
+    {
+      path: '/mobilelounge',
+      component: MobileLounge
+    },
+    {
+      path: '/desktoplounge',
+      component: DesktopLounge
     }
   ]
 })

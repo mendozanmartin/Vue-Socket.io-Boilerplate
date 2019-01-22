@@ -1,27 +1,9 @@
-<template >
+<template lang="html">
   <div class="page text-center">
 
-    <div class = "text-center bg-primary text-white navigation">
-      <h1 class ="p-3"><b>WV </b>CONSOLE</h1>
-    </div>
-
-<div class="desktopOnly">
-
-  <h2>Welcome to the <b>VUE</b> CONSOLE directory!</h2>
-  <p>Please enter the code you see below into your mobile device. You will be able to connect up to 4 players!</p>
-
-  <div class="container">
-    <div class="idNumber">
-      <h1><b>Your ID#:</b></h1>
-      <h1 id= "idNumber"></h1>
-    </div>
+  <div class = "text-center bg-primary text-white navigation">
+    <h1 class ="p-3"><b>WV </b>CONSOLE</h1>
   </div>
-
-
-
-
-  </div>
-
   <div class="mobileOnly">
     <p>Please enter the code you see on the Desktop/TV screen</p>
 
@@ -75,58 +57,50 @@
         </div>
       </div>
     </div>
-
-
   </div>
-
 </div>
-
 </template>
 
-<script type="text/javascript">
-import io from 'socket.io-client';
-import router from '../router';
+<script>
+  import io from 'socket.io-client';
+  import router from '../router';
 
-export default {
-  name: 'Directory',
-  data() {
-    return {
-      socket : io('wvconsole.herokuapp.com'),
-      number: ''
-
-    }
-  },
-
-  methods: {
-    addNumber: function(numberPassed) {
-      this.number += numberPassed;
+  export default {
+    name: 'Directory',
+    data() {
+      return {
+        socket : io('wvconsole.herokuapp.com'),
+        number: ''
+      }
     },
-    clearForm: function() {
-      this.number = '';
-    },
-    submitId: function() {
-      this.socket.emit('sendID', {
-        idNumber: this.number,
-        userId: document.getElementById('idNumber').innerHTML
-      });
-    }
-  },
-    mounted() {
-      this.socket.on('displayRoom', (data) => {
-        document.getElementById('idNumber').innerHTML = data.idNumber;
-      });
+    methods: {
+      addNumber: function(numberPassed) {
+        this.number += numberPassed;
+      },
+      clearForm: function() {
+        this.number = '';
+      },
+      submitId: function() {
+        this.socket.emit('sendID', {
+          idNumber: this.number
+        });
+        console.log(this.number);
 
-      this.socket.on('enterLounge', (data) => {
-        if (data.userId == this.number) {
-          router.push('lounge');
-        }
-      });
-    }
-}
+      }
+    },
+      mounted() {
+        this.socket.on("sendID", (data) => {
+          if (data.idNumber == this.number) {
+            router.push('mobilelounge');
+          }
+        });
+
+      }
+  }
+
 </script>
 
-
-<style scoped>
+<style lang="css" scoped>
 h1 {
   font-weight: normal;
 }
@@ -139,7 +113,6 @@ h1 {
   .navigation {
     margin-bottom: -30px;
   }
-
 }
 @media only screen and (min-width: 430px) {
   .mobileOnly {
@@ -152,7 +125,8 @@ h1 {
 }
 p {
   font-size: 21px;
-  margin: 30px;
+  margin: 25px;
+  margin-top: 35px;
 }
 
 input {
@@ -193,7 +167,6 @@ h4 {
   margin-top: 25px;
   padding: 50px;
 }
-
 
 
 </style>
