@@ -41,7 +41,6 @@ io.on('connection', (socket) => {
 
 socket.on('joinRoom', function(data) {
   socket.join(data.idNumber);
-
   io.emit('displayRoom', data);
   console.log("Desktop/TV has connected to room: " + data.idNumber);
 });

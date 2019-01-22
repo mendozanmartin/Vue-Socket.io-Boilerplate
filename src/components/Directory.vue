@@ -86,13 +86,9 @@
 <script type="text/javascript">
 import io from 'socket.io-client';
 import router from '../router';
-import Start from './Start'
 
 export default {
   name: 'Directory',
-  components: {
-    Start
-  },
   data() {
     return {
       socket : io('localhost:5000'),
@@ -119,9 +115,10 @@ export default {
       this.socket.on('displayRoom', (data) => {
         document.getElementById('idNumber').innerHTML = data.idNumber;
       });
+
       this.socket.on('enterLounge', (data) => {
         if (data.userId == this.number) {
-          router.push('WVLounge');
+          router.push('lounge');
         }
       });
     }
