@@ -23,30 +23,35 @@
 </div>
 
 </template>
+<script type="text/javascript">
+import io from 'socket.io-client';
+import router from '../router';
+
+export default {
+  data() {
+    return {
+      socket: io('wvconsole.herokuapp.com'),
+      roomNumber: window.desktopRoomNumber
+
+    }
+  },
+  methods: {
+
+  },
+  mounted() {
+    this.socket.on(this.roomNumber, (data) => {
+      if (data.loungeNumber == this.roomNumber) {
+        console.log(data.direction);
+      }
+    });
+  }
+}
+</script>
 
 <style scoped>
 .page {
   width: 100%;
   text-align: center;
-}
-
-@media only screen and (max-width: 430px){
-  .desktopOnly {
-    display: none;
-    width: 100%;
-  }
-  img {
-    height: 80px;
-    width: 80px;
-  }
-
-
-}
-@media only screen and (min-width: 430px) {
-  .mobileOnly {
-    display: none;
-  }
-
 }
 .gameContainers {
   height:13vw;
@@ -55,8 +60,9 @@
   margin-top: 20px;
   padding-top: 5.5vw;
 
+
 }
-.gameContainers:hover {
+.gameContainers:focus {
   outline: 1px solid blue;
 }
 
@@ -69,7 +75,7 @@
   padding-top: 9vw;
 }
 
-.featuredGame:hover {
+.featuredGame:focus {
   outline: 1px solid blue;
 }
 .groupGames {

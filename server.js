@@ -39,12 +39,12 @@ app.use(serveStatic(__dirname + "/dist"));
 
 io.on('connection', (socket) => {
 
-socket.on('desktopJoin', function(data) {
+socket.on('desktopJoin', function(data) { //when desktop joins
   socket.join(data.idNumber);
   console.log("Desktop/TV has connected to room: " + data.idNumber);
 });
 
-socket.on('sendID', function(data) {
+socket.on('sendID', function(data) { //listens to mobile device and sends back number if room exists
       if (io.sockets.adapter.rooms[data.idNumber] == null) {
         console.log("this room does not exist");
       } else {
@@ -53,6 +53,11 @@ socket.on('sendID', function(data) {
         io.emit("sendID", data);
       }
     });
+
+socket.on('directionControl', (data) => {
+  io.emit(data.loungeNumber, data);
+});
+
 });
 
 server.listen(app.get('port'), function(){

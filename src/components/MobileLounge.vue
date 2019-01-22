@@ -7,22 +7,43 @@
   <div class="mobileOnly">
     <h4 class = "mb-5">Press the arrow keys to navigate on the Desktop/TV screen!</h4>
     <div class="d-flex justify-content-center mt-5">
-      <img src="../assets/arrow_up.png">
+      <img src="../assets/arrow_up.png" style = "cursor:pointer" v-on:click="moveDirection('up')">
     </div>
     <div class="d-flex justify-content-center">
-      <img src="../assets/arrow_left.png" class = "mr-2">
+      <img src="../assets/arrow_left.png" class = "mr-2" style = "cursor:pointer" v-on:click="moveDirection('left')">
       <button type="button" name="button" class = "btn btn-dark p-3">Select</button>
-      <img src="../assets/arrow_right.png" class = "ml-2">
+      <img src="../assets/arrow_right.png" class = "ml-2" style = "cursor:pointer" v-on:click="moveDirection('right')">
     </div>
     <div class="d-flex justify-content-center ">
-      <img src="../assets/arrow_down.png">
+      <img src="../assets/arrow_down.png" style = "cursor:pointer" v-on:click="moveDirection('down')">
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import io from 'socket.io-client';
+import router from '../router';
+
 export default {
+  name: "MobileLounge",
+  data() {
+    return {
+      loungeNumber: window.mobileRoomNumber,
+      socket: io('wvconsole.herokuapp.com')
+    }
+  },
+  methods: {
+    moveDirection: function(direction) {
+    console.log(direction);
+    //window.mobileRoomNumber contains the room this device is in
+
+    this.socket.emit('directionControl', {
+      direction: direction,
+      loungeNumber: this.loungeNumber
+    });
+    }
+  }
 }
 </script>
 
@@ -44,40 +65,8 @@ export default {
 
 
 }
-@media only screen and (min-width: 430px) {
-  .mobileOnly {
-    display: none;
-  }
 
-}
-.gameContainers {
-  height:13vw;
-  width: 16vw;
-  background-color: #B4B2B2;
-  margin-top: 20px;
-  padding-top: 5.5vw;
 
-}
-.gameContainers:hover {
-  outline: 1px solid blue;
-}
-
-.featuredGame {
-  height: 20vw;
-  width: 35vw;
-  background-color: #B4B2B2;
-  margin-top: 20px;
-  margin-right: 20vw;
-  padding-top: 9vw;
-}
-
-.featuredGame:hover {
-  outline: 1px solid blue;
-}
-.groupGames {
-  margin-left: 70px;
-  margin-right: 70px;
-}
 button {
   margin: 3vw;
 }

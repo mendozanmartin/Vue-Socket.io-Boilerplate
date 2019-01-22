@@ -85,12 +85,13 @@
           idNumber: this.number
         });
         console.log(this.number);
+        window.mobileRoomNumber = this.number;
 
       }
     },
       mounted() {
         this.socket.on("sendID", (data) => {
-          if (data.idNumber == this.number) {
+          if (data.idNumber == window.mobileRoomNumber) {
             router.push('mobilelounge');
           }
         });
