@@ -44,7 +44,6 @@ export default {
   },
 
     mounted() {
-
       this.socket.on("sendID", (data) => {
         if (data.idNumber == window.desktopRoomNumber) {
           router.push('desktoplounge');

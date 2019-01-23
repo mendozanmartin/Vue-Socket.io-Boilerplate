@@ -7,15 +7,15 @@
   <div class="mobileOnly">
     <h4 class = "mb-5">Press the arrow keys to navigate on the Desktop/TV screen!</h4>
     <div class="d-flex justify-content-center mt-5">
-      <img src="../assets/arrow_up.png" style = "cursor:pointer" v-on:click="moveDirection('up')">
+      <img src="../assets/arrow_up.png" style = "cursor:pointer" v-on:click="remoteControl('up')">
     </div>
     <div class="d-flex justify-content-center">
-      <img src="../assets/arrow_left.png" class = "mr-2" style = "cursor:pointer" v-on:click="moveDirection('left')">
-      <button type="button" name="button" class = "btn btn-dark p-3">Select</button>
-      <img src="../assets/arrow_right.png" class = "ml-2" style = "cursor:pointer" v-on:click="moveDirection('right')">
+      <img src="../assets/arrow_left.png" class = "mr-2" style = "cursor:pointer" v-on:click="remoteControl('left')">
+      <button type="button" name="button" class = "btn btn-dark p-3"  v-on:click="remoteControl('select')">Select</button>
+      <img src="../assets/arrow_right.png" class = "ml-2" style = "cursor:pointer" v-on:click="remoteControl('right')">
     </div>
     <div class="d-flex justify-content-center ">
-      <img src="../assets/arrow_down.png" style = "cursor:pointer" v-on:click="moveDirection('down')">
+      <img src="../assets/arrow_down.png" style = "cursor:pointer" v-on:click="remoteControl('down')">
     </div>
   </div>
 </div>
@@ -34,13 +34,14 @@ export default {
     }
   },
   methods: {
-    moveDirection: function(direction) {
-    console.log(direction);
+    remoteControl: function(direction) {
+      if (direction == 'select') {
+        router.push('mobilegamepage');
+      }
     //window.mobileRoomNumber contains the room this device is in
-
     this.socket.emit('directionControl', {
       direction: direction,
-      loungeNumber: this.loungeNumber
+      loungeNumber: this.loungeNumber,
     });
     }
   }

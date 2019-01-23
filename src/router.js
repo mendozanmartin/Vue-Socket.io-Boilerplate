@@ -5,6 +5,7 @@ import DesktopDirectory from './components/DesktopDirectory'
 import MobileDirectory from './components/MobileDirectory'
 import DesktopLounge from './components/DesktopLounge'
 import MobileLounge from './components/MobileLounge'
+import DesktopGamePage from './components/DesktopGamePage'
 
 
 Vue.use(Router)
@@ -30,6 +31,10 @@ export default new Router({
     {
       path: '/desktoplounge',
       component: DesktopLounge
+    },
+    {
+      path: '/desktopgamepage',
+      component: DesktopGamePage
     }
   ]
 })
