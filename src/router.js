@@ -5,7 +5,7 @@ import DesktopDirectory from './components/DesktopDirectory'
 import MobileDirectory from './components/MobileDirectory'
 import DesktopLounge from './components/DesktopLounge'
 import MobileLounge from './components/MobileLounge'
-import DesktopGamePage from './components/DesktopGamePage'
+import DesktopPacman from './components/PacmanGame/DesktopPacman'
 
 
 Vue.use(Router)
@@ -33,8 +33,8 @@ export default new Router({
       component: DesktopLounge
     },
     {
-      path: '/desktopgamepage',
-      component: DesktopGamePage
+      path: '/desktoppacman',
+      component: DesktopPacman
     }
   ]
 })

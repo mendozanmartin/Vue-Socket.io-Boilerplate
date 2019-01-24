@@ -45,7 +45,7 @@ export default {
     this.socket.on(this.roomNumber, (data) => {
       if (data.loungeNumber == this.roomNumber) {
         if (data.direction == "select") {
-          router.push('/desktopgamepage');
+          router.push('/desktoppacman');
         }
         if (this.Game1 == true) {
           this.Game1 = false;

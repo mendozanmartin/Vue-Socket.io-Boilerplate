@@ -77,7 +77,6 @@ import io from 'socket.io-client';
   height: 100%;
   }
 
-
 .btn {
   width: 150px;
   height: 150px;
