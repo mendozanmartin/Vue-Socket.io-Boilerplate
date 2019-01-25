@@ -1,8 +1,12 @@
 <template lang="html">
-<div class="">
-  <button type="button" class = "btn btn-primary" v-on:click="newPage()" name="button">Hello </button>
-<div class="gameContainer">
-</div>
+<div class="page p-5">
+  <h1 class = "text-white"><b>Random Platformer!!1!!</b></h1>
+  <div class = "row mt-5">
+    <div class="col-3"></div>
+    <div id="gameContainer" class = "col-6"></div>
+    <div class="col-3"></div>
+  </div>
+
 
 </div>
 </template>
@@ -52,10 +56,11 @@ export default {
         window.direction = data.direction;
       }
     });
-    var config = {
+    var GameConfig = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    parent: 'gameContainer',
     physics: {
       default: 'arcade',
       arcade: {
@@ -71,7 +76,7 @@ export default {
 };
       var score = 0;
       var scoreText;
-     window.game = new Phaser.Game(config);
+     window.game = new Phaser.Game(GameConfig);
       function preload ()
       {
         this.load.setBaseURL('https://labs.phaser.io');
@@ -165,7 +170,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.gameContainer {
-  margin-top: -100px;
+#gameContainer {
+  margin: auto;
+}
+.page {
+  height: 100%;
+  background-color: #336699;
+  width: 100%;
+  text-align: center;
 }
 </style>
