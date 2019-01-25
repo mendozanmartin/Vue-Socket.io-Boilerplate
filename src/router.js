@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Start from './components/Start'
-import DesktopDirectory from './components/DesktopDirectory'
-import MobileDirectory from './components/MobileDirectory'
-import DesktopLounge from './components/DesktopLounge'
-import MobileLounge from './components/MobileLounge'
-import DesktopPacman from './components/PacmanGame/DesktopPacman'
+import DesktopDirectory from './components/Directory/DesktopDirectory'
+import MobileDirectory from './components/Directory/MobileDirectory'
+import DesktopLounge from './components/Lounge/DesktopLounge'
+import MobileLounge from './components/Lounge/MobileLounge'
+import DesktopPhaser from './components/PhaserGame/DesktopPhaser'
+import MobilePhaser from './components/PhaserGame/MobilePhaser'
+
 
 
 Vue.use(Router)
@@ -33,8 +35,14 @@ export default new Router({
       component: DesktopLounge
     },
     {
-      path: '/desktoppacman',
-      component: DesktopPacman
+      path: '/desktopphaser',
+      component: DesktopPhaser
+    },
+    {
+      path: '/mobilephaser',
+      component: MobilePhaser
     }
+
+
   ]
 })

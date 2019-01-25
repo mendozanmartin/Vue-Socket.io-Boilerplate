@@ -63,7 +63,7 @@
 
 <script>
   import io from 'socket.io-client';
-  import router from '../router';
+  import router from '../../router';
 
   export default {
     name: 'Directory',

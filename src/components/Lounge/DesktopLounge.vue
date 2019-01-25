@@ -23,7 +23,7 @@
 </template>
 <script type="text/javascript">
 import io from 'socket.io-client';
-import router from '../router';
+import router from '../../router';
 
 export default {
   data() {
@@ -45,7 +45,7 @@ export default {
     this.socket.on(this.roomNumber, (data) => {
       if (data.loungeNumber == this.roomNumber) {
         if (data.direction == "select") {
-          router.push('/desktoppacman');
+          router.push('/desktopphaser');
         }
         if (this.Game1 == true) {
           this.Game1 = false;
