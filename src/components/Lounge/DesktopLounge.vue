@@ -45,7 +45,14 @@ export default {
     this.socket.on(this.roomNumber, (data) => {
       if (data.loungeNumber == this.roomNumber) {
         if (data.direction == "select") {
-          router.push('/desktopphaser');
+          this.FeaturedGame1 == true ? router.push('/desktopphaser') : null;
+          this.FeaturedGame2 == true ? router.push('/desktopphaser') : null;
+          this.Game1 == true ? router.push('/desktopphaser') : null;
+          this.Game2 == true ? router.push('/desktopphaser') : null;
+          this.Game3 == true ? router.push('/desktopphaser') : null;
+          this.Game4 == true ? router.push('/desktopphaser') : null;
+
+
         }
         if (this.Game1 == true) {
           this.Game1 = false;
@@ -130,5 +137,6 @@ button {
 .selected {
   box-shadow: 0.75vw 0.75vw grey;
 }
+
 
 </style>

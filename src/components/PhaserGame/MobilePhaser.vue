@@ -7,15 +7,15 @@
   <div class="mobileOnly">
     <h4 class = "mb-5">You are now in the game!</h4>
     <div class="d-flex justify-content-center mt-5">
-      <img src="../../assets/arrow_up.png" style = "cursor:pointer"  @touchstart="start('up')" @touchend="stop('up')" >
+      <img src="../../assets/arrow_up.png" style = "cursor:pointer"  @touchstart="start('up')" @touchend="stop('up')" onContextMenu="return false;">
     </div>
     <div class="d-flex justify-content-center">
-      <img src="../../assets/arrow_left.png" class = "mr-2" style = "cursor:pointer" @touchstart="start('left')" @touchend="stop('left')" >
+      <img src="../../assets/arrow_left.png" class = "mr-2" style = "cursor:pointer" @touchstart="start('left')" @touchend="stop('left')" onContextMenu="return false;">
       <button type="button" name="button" class = "btn btn-dark p-3"  v-on:click="remoteControl('select')">Select</button>
-      <img src="../../assets/arrow_right.png" class = "ml-2" style = "cursor:pointer" @touchstart="start('right')" @touchend="stop('right')" >
+      <img src="../../assets/arrow_right.png" class = "ml-2" style = "cursor:pointer" @touchstart="start('right')" @touchend="stop('right')" onContextMenu="return false;">
     </div>
     <div class="d-flex justify-content-center ">
-      <img src="../../assets/arrow_down.png" style = "cursor:pointer" @touchstart="start('down')" @touchend="stop('down')" >
+      <img src="../../assets/arrow_down.png" style = "cursor:pointer" @touchstart="start('down')" @touchend="stop('down')" onContextMenu="return false;">
     </div>
   </div>
 </div>
@@ -48,14 +48,11 @@ export default {
   },
 
     start: function(direction) {
-      if(!this.interval){
-        	this.interval = setInterval(() =>
+
           this.socket.emit('gameControls', {
             direction: direction,
             loungeNumber: this.loungeNumber,
-          })
-            , 30);
-    }
+          });
   },
 
     stop: function(direction) {
@@ -64,7 +61,7 @@ export default {
     this.socket.emit('gameControls', {
       direction: null,
       loungeNumber: this.loungeNumber,
-    })
+    });
 
     }
   }

@@ -3,11 +3,15 @@
 
 <div>
 
-  <div class="title">
+  <div class="title mobileOnly">
   <h1>Welcome to the <b>WV</b> Console!</h1>
   </div>
 
-  <div class="title">
+  <div class="title desktopOnly">
+  <h1>Welcome to the <b>WV</b> Console!</h1>
+  </div>
+
+  <div class="text-center">
     <router-link to="/desktopdirectory" v-on:click.native="desktopJoin" class = " desktopOnly animated pulse infinite  btn btn-dark br-5" enter-active-class= "animated infinite bounce">Start</router-link>
     <router-link to="/mobiledirectory" class = "mobileOnly animated pulse infinite  btn btn-primary br-5" enter-active-class= "animated infinite bounce">Start</router-link>
   </div>
@@ -52,6 +56,12 @@ import io from 'socket.io-client';
   .desktopOnly {
     display: none;
   }
+  .title {
+    text-align: center;
+    width: 100%;
+    padding:10px;
+    margin-bottom: 30px;
+  }
 
 
 }
@@ -59,18 +69,20 @@ import io from 'socket.io-client';
   .mobileOnly {
     display: none;
   }
+
+  .title {
+    text-align: center;
+    width: 100%;
+    padding:10px;
+    margin-top: 10%;
+  }
 }
 
 .row {
   margin: 0px;
 }
 
-.title {
-  text-align: center;
-  width: 100%;
-  padding:10px;
-  margin-bottom: 30px;
-}
+
 .page {
   width: 100%;
   background-color: #7c93dd;
@@ -83,6 +95,9 @@ import io from 'socket.io-client';
   font-size: 50px;
   border-radius: 75px;
   padding-top: 30px;
+}
+.text-center {
+  margin-bottom: 30px;
 }
 img {
   height: 75px;
