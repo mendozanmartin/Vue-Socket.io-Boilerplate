@@ -32,7 +32,7 @@ import io from 'socket.io-client';
     data() {
       return {
         idNumber: Math.floor(Math.random()*999999 + 100000),
-        socket : io('localhost:5000')
+        socket : io('wvconsole.herokuapp.com')
       }
     },
     methods: {

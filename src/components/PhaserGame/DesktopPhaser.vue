@@ -20,7 +20,7 @@ export default {
   name: 'DesktopPhaser',
   data() {
     return {
-      socket: io('localhost:5000'),
+      socket: io('wvconsole.herokuapp.com'),
       roomNumber: window.desktopRoomNumber
 
     }

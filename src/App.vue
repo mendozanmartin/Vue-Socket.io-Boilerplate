@@ -6,6 +6,29 @@
   </div>
 </template>
 
+<script type="text/javascript">
+import io from 'socket.io-client';
+import router from './router';
+
+  export default {
+    data() {
+      return {
+        socket : io('localhost:5000')
+      }
+    },
+    created() {
+      window.addEventListener('beforeunload', this.handler);
+    },
+    methods: {
+      handler() {
+        this.socket.emit('disconnectionDetected', {
+          roomID: window.mobileRoomNumber
+        });
+        console.log('hello');
+      }
+    }
+  }
+</script>
 
 
 <style>

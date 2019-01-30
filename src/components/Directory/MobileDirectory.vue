@@ -69,7 +69,7 @@
     name: 'Directory',
     data() {
       return {
-        socket : io('localhost:5000'),
+        socket : io('wvconsole.herokuapp.com'),
         number: '',
         instructions: 'Please enter the code you see on the Desktop/TV screen'
       }

@@ -33,17 +33,19 @@ socket.on('sendID', function(data) { //listens to mobile device and sends back n
       }
     });
 
-socket.on('disconnect', function(data) {
-  console.log(io.sockets.clients() + ' has disconnected');
+socket.on('disconnectionDetected', function(data) {
+  console.log('Player from ' + data.roomID + ' has disconnected');
+  var disconnectedRoom = (data.roomID).toString() + 'disconnected';
+  io.emit(disconnectedRoom, data);
 });
 
 socket.on('directionControl', (data) => {
-  var directionLounge = (data.loungeNumber).toString() + 'direction'
+  var directionLounge = (data.loungeNumber).toString() + 'direction';
   io.emit(directionLounge, data);
 });
 
 socket.on('gameControls', (data) => {
-  var gameLounge = (data.loungeNumber).toString() + 'game'
+  var gameLounge = (data.loungeNumber).toString() + 'game';
   io.emit(gameLounge, data);
 });
 });

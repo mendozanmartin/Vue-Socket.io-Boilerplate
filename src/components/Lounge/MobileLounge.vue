@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       loungeNumber: window.mobileRoomNumber,
-      socket: io('localhost:5000'),
+      socket: io('wvconsole.herokuapp.com'),
       playerNumber: ''
     }
   },
@@ -44,10 +44,11 @@ export default {
       direction: direction,
       loungeNumber: this.loungeNumber,
     });
-    }
-  },
+  }
+
+},
   mounted() {
-    
+
   }
 }
 </script>

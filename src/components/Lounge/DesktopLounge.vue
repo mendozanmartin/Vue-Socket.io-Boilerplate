@@ -31,7 +31,7 @@ import router from '../../router';
 export default {
   data() {
     return {
-      socket: io('localhost:5000'),
+      socket: io('wvconsole.herokuapp.com'),
       roomNumber: window.desktopRoomNumber,
       Game1: true,
       Game2: false,
