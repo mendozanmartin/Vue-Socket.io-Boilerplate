@@ -35,8 +35,12 @@ socket.on('sendID', function(data) { //listens to mobile device and sends back n
 
 socket.on('disconnectionDetected', function(data) {
   console.log('Player from ' + data.roomID + ' has disconnected');
-  var disconnectedRoom = (data.roomID).toString() + 'disconnected';
-  io.emit(disconnectedRoom, data);
+  if (data.roomID != null) {
+    var disconnectedRoom = (data.roomID).toString() + 'disconnected';
+    io.emit(disconnectedRoom, data);
+  } else {
+    console.log('no rooms yet');
+  }
 });
 
 socket.on('directionControl', (data) => {

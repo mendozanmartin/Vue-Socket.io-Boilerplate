@@ -36,9 +36,6 @@ export default {
   },
   methods: {
     remoteControl: function(direction) {
-      if (direction == 'select') {
-        router.push('mobilephaser');
-      }
     //window.mobileRoomNumber contains the room this device is in
     this.socket.emit('directionControl', {
       direction: direction,
@@ -48,9 +45,15 @@ export default {
 
 },
   mounted() {
-
-  }
+    var directionLounge = (window.mobileRoomNumber).toString() + 'direction';
+    this.socket.on(directionLounge, (data) => {
+        if (data.direction == "select") {
+          router.push('/mobilephaser');
+          }
+    });
 }
+}
+
 </script>
 
 <style lang="css" scoped>

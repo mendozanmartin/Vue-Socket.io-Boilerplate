@@ -53,7 +53,6 @@ export default {
 
     var directionLounge = (this.roomNumber).toString() + 'direction';
     this.socket.on(directionLounge, (data) => {
-      if (data.loungeNumber == this.roomNumber) {
         if (data.direction == "select") {
           this.FeaturedGame1 == true ? router.push('/desktopphaser') : null;
           this.FeaturedGame2 == true ? router.push('/desktopphaser') : null;
@@ -101,7 +100,6 @@ export default {
           this.Game3 = data.direction == "up" ? true : false;
           this.FeaturedGame2 = data.direction == "down" ? true : false;
         }
-      }
     });
   },
   beforeMount() {
