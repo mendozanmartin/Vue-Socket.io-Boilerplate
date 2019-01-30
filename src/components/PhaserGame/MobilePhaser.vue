@@ -2,7 +2,7 @@
   <div class="page text-center">
 
   <div class = "text-center bg-primary text-white navigation shadow-lg">
-    <h1 class ="p-3"><b>WV </b>CONSOLE</h1>
+    <h2 class ="p-2"><b>WV </b>CONSOLE</h2>
   </div>
   <div class="mobileOnly">
     <h4 class = "mb-5">You are now in the game!</h4>
@@ -11,7 +11,7 @@
     </div>
     <div class="d-flex justify-content-center">
       <img src="../../assets/arrow_left.png" class = "mr-2" style = "cursor:pointer" @touchstart="start('left')" @touchend="stop('left')" onContextMenu="return false;">
-      <button type="button" name="button" class = "btn btn-dark p-3"  v-on:click="remoteControl('select')">Select</button>
+      <button type="button" name="button" class = "btn btn-dark p-3">Select</button>
       <img src="../../assets/arrow_right.png" class = "ml-2" style = "cursor:pointer" @touchstart="start('right')" @touchend="stop('right')" onContextMenu="return false;">
     </div>
     <div class="d-flex justify-content-center ">
@@ -30,23 +30,11 @@ export default {
   data() {
     return {
       loungeNumber: window.mobileRoomNumber,
-      socket: io('wvconsole.herokuapp.com'),
+      socket: io('localhost:5000'),
       interval:false,
     }
   },
   methods: {
-    remoteControl: function(direction) {
-      if (direction == 'select') {
-        router.push('mobilephaser');
-      }
-
-    //window.mobileRoomNumber contains the room this device is in
-    this.socket.emit('gameControls', {
-      direction: direction,
-      loungeNumber: this.loungeNumber,
-    });
-  },
-
     start: function(direction) {
 
           this.socket.emit('gameControls', {
@@ -88,7 +76,9 @@ export default {
 
 }
 
-
+h1, h2, h3 {
+  font-weight: normal;
+}
 button {
   margin: 3vw;
 }

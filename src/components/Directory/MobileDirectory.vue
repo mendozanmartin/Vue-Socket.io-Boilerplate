@@ -2,10 +2,10 @@
   <div class="page text-center">
 
   <div class = "text-center bg-primary text-white navigation">
-    <h1 class ="p-3"><b>WV </b>CONSOLE</h1>
+    <h2 class ="p-2"><b>WV </b>CONSOLE</h2>
   </div>
   <div class="mobileOnly">
-    <p>Please enter the code you see on the Desktop/TV screen</p>
+    <p>{{instructions}}</p>
 
     <div class="container">
       <input type="text" name="" value="" placeholder="__ __ __ __ __ __" v-model="number" >
@@ -69,8 +69,9 @@
     name: 'Directory',
     data() {
       return {
-        socket : io('wvconsole.herokuapp.com'),
-        number: ''
+        socket : io('localhost:5000'),
+        number: '',
+        instructions: 'Please enter the code you see on the Desktop/TV screen'
       }
     },
     methods: {
@@ -84,16 +85,16 @@
         this.socket.emit('sendID', {
           idNumber: this.number
         });
-        console.log(this.number);
         window.mobileRoomNumber = this.number;
-
       }
     },
       mounted() {
         this.socket.on("sendID", (data) => {
           if (data.idNumber == window.mobileRoomNumber) {
             router.push('mobilelounge');
-          }
+        } else {
+          this.instructions = 'The room you have entered does not exist. Please try again.';
+        }
         });
 
       }

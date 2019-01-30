@@ -28,15 +28,23 @@ socket.on('sendID', function(data) { //listens to mobile device and sends back n
         socket.join(data.idNumber);
         console.log("You have joined room: " + data.idNumber);
         io.emit("sendID", data);
+        var numberOfPlayers = (data.idNumber).toString() + 'numPlayers';
+        io.emit(numberOfPlayers, data);
       }
     });
 
+socket.on('disconnect', function(data) {
+  console.log(io.sockets.clients() + ' has disconnected');
+});
+
 socket.on('directionControl', (data) => {
-  io.emit(data.loungeNumber, data);
+  var directionLounge = (data.loungeNumber).toString() + 'direction'
+  io.emit(directionLounge, data);
 });
 
 socket.on('gameControls', (data) => {
-  io.emit(data.loungeNumber, data);
+  var gameLounge = (data.loungeNumber).toString() + 'game'
+  io.emit(gameLounge, data);
 });
 });
 

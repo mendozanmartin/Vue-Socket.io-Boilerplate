@@ -1,7 +1,10 @@
 <template>
   <div class="page text-center">
-    <div class = "text-center bg-primary text-white navigation">
-      <h1 class ="p-3"><b>WV </b>CONSOLE</h1>
+    <div class = "d-flex justify-content-between bg-primary text-white navigation">
+        <h2 class ="p-2"><b>WV </b>CONSOLE</h2>
+        <h3 class = "p-2">Room Number: <b>{{roomNumber}}</b></h3>
+        <h3 class = "p-2">Number of Players : {{numberOfPlayers}}</h3>
+
     </div>
     <div class="desktopOnly">
 
@@ -28,21 +31,28 @@ import router from '../../router';
 export default {
   data() {
     return {
-      socket: io('wvconsole.herokuapp.com'),
+      socket: io('localhost:5000'),
       roomNumber: window.desktopRoomNumber,
       Game1: true,
       Game2: false,
       Game3: false,
       Game4: false,
       FeaturedGame1: false,
-      FeaturedGame2: false
+      FeaturedGame2: false,
+      numberOfPlayers: window.numberOfPlayers
     }
   },
   methods: {
 
   },
   mounted() {
-    this.socket.on(this.roomNumber, (data) => {
+    var numPlayers = (window.desktopRoomNumber).toString() + 'numPlayers';
+    this.socket.on(numPlayers, (data) => {
+      this.numberOfPlayers = window.numberOfPlayers;
+    });
+
+    var directionLounge = (this.roomNumber).toString() + 'direction';
+    this.socket.on(directionLounge, (data) => {
       if (data.loungeNumber == this.roomNumber) {
         if (data.direction == "select") {
           this.FeaturedGame1 == true ? router.push('/desktopphaser') : null;
@@ -136,6 +146,10 @@ button {
 }
 .selected {
   box-shadow: 0.75vw 0.75vw grey;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
 }
 
 

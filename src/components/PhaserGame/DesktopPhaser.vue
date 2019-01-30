@@ -14,13 +14,13 @@
 <script>
 import Phaser from 'phaser'
 import router from '../../router'
-import io from 'socket.io-client';
+import io from 'socket.io-client'
 
 export default {
   name: 'DesktopPhaser',
   data() {
     return {
-      socket: io('wvconsole.herokuapp.com'),
+      socket: io('localhost:5000'),
       roomNumber: window.desktopRoomNumber
 
     }
@@ -51,7 +51,8 @@ export default {
     //     update: update
     //   }
     // };
-    this.socket.on(this.roomNumber, (data) => {
+    var gameLounge = (this.roomNumber).toString() + 'game';
+    this.socket.on(gameLounge, (data) => {
       if (data.loungeNumber == this.roomNumber) {
         window.direction = data.direction;
       }

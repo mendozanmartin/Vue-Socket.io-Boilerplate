@@ -32,7 +32,7 @@ import io from 'socket.io-client';
     data() {
       return {
         idNumber: Math.floor(Math.random()*999999 + 100000),
-        socket : io('wvconsole.herokuapp.com')
+        socket : io('localhost:5000')
       }
     },
     methods: {
@@ -69,7 +69,6 @@ import io from 'socket.io-client';
   .mobileOnly {
     display: none;
   }
-
   .title {
     text-align: center;
     width: 100%;
@@ -77,18 +76,14 @@ import io from 'socket.io-client';
     margin-top: 10%;
   }
 }
-
 .row {
   margin: 0px;
 }
-
-
 .page {
   width: 100%;
   background-color: #7c93dd;
   height: 100%;
   }
-
 .btn {
   width: 150px;
   height: 150px;
@@ -103,6 +98,4 @@ img {
   height: 75px;
   width: auto;
 }
-
-
 </style>

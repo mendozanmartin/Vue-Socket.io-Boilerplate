@@ -1,12 +1,12 @@
 <template >
   <div class="page text-center">
 
-    <div class = "text-center bg-primary text-white navigation shadow-lg">
-      <h1 class ="p-3"><b>WV </b>CONSOLE</h1>
+    <div class = "d-flex justify-content-between bg-primary text-white navigation">
+        <h2 class ="p-2"><b>WV </b>CONSOLE</h2>
+
     </div>
 
 <div class="desktopOnly">
-
   <h2 class = "mt-4">Welcome to the <b>WV</b> CONSOLE directory!</h2>
   <p>Please enter the code you see below into your mobile device. You will be able to connect up to 4 players!</p>
 
@@ -17,11 +17,7 @@
     </div>
   </div>
 
-
-
   </div>
-
-
 
 </div>
 
@@ -35,9 +31,10 @@ export default {
   name: 'Directory',
   data() {
     return {
-      socket : io('wvconsole.herokuapp.com'),
+      socket : io('localhost:5000'),
       number: '',
-      roomNumber: window.desktopRoomNumber
+      roomNumber: window.desktopRoomNumber,
+      numPlayers: 0
 
     }
   },
@@ -46,8 +43,12 @@ export default {
       this.socket.on("sendID", (data) => {
         if (data.idNumber == window.desktopRoomNumber) {
           router.push('desktoplounge');
+          this.numPlayers += 1;
+          window.numberOfPlayers = this.numPlayers;
+          console.log('Player ' + window.numberOfPlayers + ' has joined the lobby');
         }
       });
+
 
     }
 }

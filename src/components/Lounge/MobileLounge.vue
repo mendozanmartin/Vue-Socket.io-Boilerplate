@@ -2,7 +2,7 @@
   <div class="page text-center">
 
   <div class = "text-center bg-primary text-white navigation shadow-lg">
-    <h1 class ="p-3"><b>WV </b>CONSOLE</h1>
+    <h2 class ="p-2"><b>WV </b>CONSOLE</h2>
   </div>
   <div class="mobileOnly">
     <h4 class = "mb-5">Press the arrow keys to navigate on the Desktop/TV screen!</h4>
@@ -30,7 +30,8 @@ export default {
   data() {
     return {
       loungeNumber: window.mobileRoomNumber,
-      socket: io('wvconsole.herokuapp.com')
+      socket: io('localhost:5000'),
+      playerNumber: ''
     }
   },
   methods: {
@@ -44,6 +45,9 @@ export default {
       loungeNumber: this.loungeNumber,
     });
     }
+  },
+  mounted() {
+    
   }
 }
 </script>
@@ -67,7 +71,9 @@ export default {
 
 }
 
-
+h1, h2, h3 {
+  font-weight: normal;
+}
 button {
   margin: 3vw;
 }
