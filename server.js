@@ -1,6 +1,3 @@
-
-
-
 var express = require('express')
   , http = require('http');
 //make sure you keep this order
@@ -52,7 +49,13 @@ socket.on('gameControls', (data) => {
   var gameLounge = (data.loungeNumber).toString() + 'game';
   io.emit(gameLounge, data);
 });
+
+socket.on('playerAssign', (data) => { //data.playerNumber
+  io.emit('sendPlayerID', data);
 });
+});
+
+
 
 server.listen(app.get('port'), function(){
   console.log('listening on *:5000');

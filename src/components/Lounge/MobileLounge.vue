@@ -36,7 +36,6 @@ export default {
   },
   methods: {
     remoteControl: function(direction) {
-    //window.mobileRoomNumber contains the room this device is in
     this.socket.emit('directionControl', {
       direction: direction,
       loungeNumber: this.loungeNumber,
@@ -45,11 +44,20 @@ export default {
 
 },
   mounted() {
+    window.assignedPlayerID = false;
     var directionLounge = (window.mobileRoomNumber).toString() + 'direction';
+
     this.socket.on(directionLounge, (data) => {
         if (data.direction == "select") {
           router.push('/mobilephaser');
           }
+    });
+
+    this.socket.on('sendPlayerID', (data) => {
+      if (window.assignedPlayerID == false) {
+        window.assignedPlayerID = true;
+        window.playerID = data.playerNumber;
+      }
     });
 }
 }

@@ -1,10 +1,10 @@
 <template lang="html">
 <div class="page p-5">
-  <h1 class = "text-white"><b>Random Platformer!!1!!</b></h1>
+  <h1 class = "text-white"><b>Demo: Collect all the items! :)</b></h1>
   <div class = "row mt-5">
-    <div class="col-3"></div>
-    <div id="gameContainer" class = "col-6"></div>
-    <div class="col-3"></div>
+    <div class="col-2"></div>
+    <div id="gameContainer" class = "col-8"></div>
+    <div class="col-2"></div>
   </div>
 
 
@@ -160,8 +160,13 @@ export default {
             player.setVelocityY(-330);
         }
       }
+      var points = 0;
       function collectStar (player, star)
       {
+        points += 1;
+        if (points == 12) {
+          router.push('/desktoplounge');
+        }
           star.disableBody(true, true);
           score += 10;
           scoreText.setText('Score: ' + score);

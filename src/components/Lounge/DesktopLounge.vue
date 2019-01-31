@@ -10,6 +10,8 @@
 
     <h1>Welcome to the WV Lounge.</h1>
     <h3>Choose between many of our games.</h3>
+    <hr>
+
     <div class="d-flex justify-content-around groupGames">
       <div to="/desktopgamepage" class="gameContainers text-center" v-bind:class = "{selected: Game1}"><h3><b>Game 1</b></h3></div>
       <div to="/desktopgamepage" class="gameContainers text-center" v-bind:class = "{selected: Game2}"><h3><b>Game 2</b></h3></div>
@@ -20,6 +22,12 @@
       <div to="/desktopgamepage" class="featuredGame" v-bind:class = "{selected: FeaturedGame1}"><h2><b>Featured Game 1</b></h2></div>
       <div to="/desktopgamepage" class="featuredGame" v-bind:class = "{selected: FeaturedGame2}"><h2><b>Featured Game 2</b></h2></div>
     </div>
+
+    <div class="QRcode">
+      <img src="../../assets/QRcode.png"alt="" style = "height: 100px;">
+      <h3>Scan to join the room</h3>
+    </div>
+
   </div>
 </div>
 
@@ -49,8 +57,10 @@ export default {
     var numPlayers = (window.desktopRoomNumber).toString() + 'numPlayers';
     this.socket.on(numPlayers, (data) => {
       this.numberOfPlayers = window.numberOfPlayers;
+      this.socket.emit('playerAssign', {
+        playerNumber: window.numberOfPlayers
+      });
     });
-
     var directionLounge = (this.roomNumber).toString() + 'direction';
     this.socket.on(directionLounge, (data) => {
         if (data.direction == "select") {
@@ -60,8 +70,6 @@ export default {
           this.Game2 == true ? router.push('/desktopphaser') : null;
           this.Game3 == true ? router.push('/desktopphaser') : null;
           this.Game4 == true ? router.push('/desktopphaser') : null;
-
-
         }
         if (this.Game1 == true) {
           this.Game1 = false;
@@ -149,6 +157,12 @@ button {
 h1, h2, h3 {
   font-weight: normal;
 }
-
+.QRcode {
+  position: absolute;
+  right: 70px;
+  top: 70px;
+  height: 400px;
+  width: 400px;
+}
 
 </style>

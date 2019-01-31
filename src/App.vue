@@ -13,7 +13,7 @@ import router from './router';
   export default {
     data() {
       return {
-        socket : io('wvconsole.herokuapp.com')
+        socket : io('localhost:5000')
       }
     },
     created() {

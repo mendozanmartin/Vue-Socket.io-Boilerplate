@@ -7,7 +7,7 @@ import DesktopLounge from './components/Lounge/DesktopLounge'
 import MobileLounge from './components/Lounge/MobileLounge'
 import DesktopPhaser from './components/PhaserGame/DesktopPhaser'
 import MobilePhaser from './components/PhaserGame/MobilePhaser'
-
+import Thanks from './components/Thanks'
 
 
 Vue.use(Router)
@@ -41,8 +41,10 @@ export default new Router({
     {
       path: '/mobilephaser',
       component: MobilePhaser
+    },
+    {
+      path: '/thanks',
+      component: Thanks
     }
-
-
   ]
 })

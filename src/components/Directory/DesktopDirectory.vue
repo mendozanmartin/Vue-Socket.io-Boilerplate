@@ -17,6 +17,11 @@
     </div>
   </div>
 
+  <div class="QRcode mt-5">
+    <img src="../../assets/QRcode.png"alt="">
+    <h3>Scan the QR code to join the room</h3>
+  </div>
+
   </div>
 
 </div>
