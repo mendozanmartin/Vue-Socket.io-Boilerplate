@@ -6,6 +6,7 @@
   </div>
   <div class="mobileOnly">
     <h4 class = "mb-5">Press the arrow keys to navigate on the Desktop/TV screen!</h4>
+    <h4><b>You are player {{ playerNumber}} </b></h4>
     <div class="d-flex justify-content-center mt-5">
       <img src="../../assets/arrow_up.png" style = "cursor:pointer" v-on:click="remoteControl('up')">
     </div>
@@ -31,7 +32,7 @@ export default {
     return {
       loungeNumber: window.mobileRoomNumber,
       socket: io('wvconsole.herokuapp.com'),
-      playerNumber: ''
+      playerNumber: window.playerNumber
     }
   },
   methods: {
@@ -44,7 +45,7 @@ export default {
 
 },
   mounted() {
-    window.assignedPlayerID = false;
+
     var directionLounge = (window.mobileRoomNumber).toString() + 'direction';
 
     this.socket.on(directionLounge, (data) => {
@@ -53,12 +54,8 @@ export default {
           }
     });
 
-    this.socket.on('sendPlayerID', (data) => {
-      if (window.assignedPlayerID == false) {
-        window.assignedPlayerID = true;
-        window.playerID = data.playerNumber;
-      }
-    });
+
+
 }
 }
 

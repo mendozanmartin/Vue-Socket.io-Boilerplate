@@ -25,6 +25,7 @@ socket.on('sendID', function(data) { //listens to mobile device and sends back n
         socket.join(data.idNumber);
         console.log("You have joined room: " + data.idNumber);
         io.emit("sendID", data);
+        console.log(data.idNumber + ' is working');
         var numberOfPlayers = (data.idNumber).toString() + 'numPlayers';
         io.emit(numberOfPlayers, data);
       }
@@ -50,9 +51,17 @@ socket.on('gameControls', (data) => {
   io.emit(gameLounge, data);
 });
 
-socket.on('playerAssign', (data) => { //data.playerNumber
-  io.emit('sendPlayerID', data);
+
+
+socket.on('thanksForPlaying', (data) => {
+  io.emit('mobileThankYou', data);
 });
+
+socket.on('assignMobileId', (data) => {
+  io.emit('assignPlayerNumber', data);
+  console.log(data);
+});
+
 });
 
 

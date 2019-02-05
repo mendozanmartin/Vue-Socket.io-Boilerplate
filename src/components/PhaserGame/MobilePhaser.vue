@@ -32,6 +32,7 @@ export default {
       loungeNumber: window.mobileRoomNumber,
       socket: io('wvconsole.herokuapp.com'),
       interval:false,
+      playerNumber: window.playerNumber
     }
   },
   methods: {
@@ -40,6 +41,7 @@ export default {
           this.socket.emit('gameControls', {
             direction: direction,
             loungeNumber: this.loungeNumber,
+            playerNumber: window.playerNumber
           });
   },
 
@@ -49,9 +51,17 @@ export default {
     this.socket.emit('gameControls', {
       direction: null,
       loungeNumber: this.loungeNumber,
+      playerNumber: window.playerNumber
     });
 
     }
+  },
+  mounted() {
+    this.socket.on('mobileThankYou', (data) => {
+      if (data.roomNumber == this.loungeNumber) {
+        router.push('thanks');
+      }
+    });
   }
 }
 </script>

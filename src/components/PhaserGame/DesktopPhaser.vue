@@ -51,10 +51,15 @@ export default {
     //     update: update
     //   }
     // };
+
+    window.playerID = 0;
+
     var gameLounge = (this.roomNumber).toString() + 'game';
     this.socket.on(gameLounge, (data) => {
       if (data.loungeNumber == this.roomNumber) {
+        window.playerID = data.playerNumber - 1;
         window.direction = data.direction;
+        console.log(data.direction + 'from player: ' + window.playerID);
       }
     });
     var GameConfig = {
@@ -92,7 +97,7 @@ export default {
      );
       }
       var platforms;
-      var player;
+      var player = [];
       function create ()
       {
         this.add.image(400, 300, 'sky');
@@ -102,9 +107,12 @@ export default {
         platforms.create(600, 400, 'ground');
         platforms.create(50, 250, 'ground');
         platforms.create(750, 220, 'ground');
-        player = this.physics.add.sprite(100, 450, 'dude');
-        player.setBounce(0.2);
-        player.setCollideWorldBounds(true);
+        for (var i = 0; i  < window.numberOfPlayers; i++) {
+          player[i] = this.physics.add.sprite(100, 450, 'dude');
+          player[i].tint = Math.random() * 0xffffff;
+          player[i].setBounce(0.2);
+          player[i].setCollideWorldBounds(true);
+        }
         this.anims.create({
             key: 'left',
             frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
@@ -142,22 +150,22 @@ export default {
 
         if (window.direction == 'left')
         {
-            player.setVelocityX(-160);
-            player.anims.play('left', true);
+            player[window.playerID].setVelocityX(-160);
+            player[window.playerID].anims.play('left', true);
         }
         else if (window.direction == 'right')
         {
-            player.setVelocityX(160);
-            player.anims.play('right', true);
+            player[window.playerID].setVelocityX(160);
+            player[window.playerID].anims.play('right', true);
         }
         else
         {
-            player.setVelocityX(0);
-            player.anims.play('turn');
+            player[window.playerID].setVelocityX(0);
+            player[window.playerID].anims.play('turn');
         }
-        if (window.direction == 'up' && player.body.touching.down)
+        if (window.direction == 'up' && player[window.playerID].body.touching.down)
         {
-            player.setVelocityY(-330);
+            player[window.playerID].setVelocityY(-330);
         }
       }
       var points = 0;

@@ -50,11 +50,20 @@ export default {
           router.push('desktoplounge');
           this.numPlayers += 1;
           window.numberOfPlayers = this.numPlayers;
+
+
           console.log('Player ' + window.numberOfPlayers + ' has joined the lobby');
         }
       });
 
-
+      var numPlayers = (window.desktopRoomNumber).toString() + 'numPlayers';
+      this.socket.on(numPlayers, (data) => {
+        console.log("Number of player currently: " + window.numberOfPlayers);
+        this.socket.emit('assignMobileId', {
+          roomNumber: this.roomNumber,
+          playerNumber: window.numberOfPlayers
+        });
+      });
     }
 }
 </script>

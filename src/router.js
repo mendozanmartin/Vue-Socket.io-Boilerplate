@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Start from './components/Start'
 import DesktopDirectory from './components/Directory/DesktopDirectory'
 import MobileDirectory from './components/Directory/MobileDirectory'

@@ -97,6 +97,22 @@
         }
         });
 
+        window.assignedPlayerID = false;
+
+        this.socket.on('assignPlayerNumber', (data) => {
+          console.log(window.assignedPlayerID);
+          if (window.mobileRoomNumber == data.roomNumber) {
+            if (window.assignedPlayerID == false) {
+              window.assignedPlayerID = true;
+              console.log(window.assignedPlayerID);
+
+                window.playerNumber = data.playerNumber;
+            }
+          }
+
+        });
+
+
       }
   }
 

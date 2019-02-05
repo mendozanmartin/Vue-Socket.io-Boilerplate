@@ -25,7 +25,7 @@
 
     <div class="QRcode">
       <img src="../../assets/QRcode.png"alt="" style = "height: 100px;">
-      <h3>Scan to join the room</h3>
+      <h3>Scan or join at https://wvconsole.herokuapp.com</h3>
     </div>
 
   </div>
@@ -54,12 +54,10 @@ export default {
 
   },
   mounted() {
+
     var numPlayers = (window.desktopRoomNumber).toString() + 'numPlayers';
     this.socket.on(numPlayers, (data) => {
       this.numberOfPlayers = window.numberOfPlayers;
-      this.socket.emit('playerAssign', {
-        playerNumber: window.numberOfPlayers
-      });
     });
     var directionLounge = (this.roomNumber).toString() + 'direction';
     this.socket.on(directionLounge, (data) => {
@@ -162,7 +160,7 @@ h1, h2, h3 {
   right: 70px;
   top: 70px;
   height: 400px;
-  width: 400px;
+  width: 600px;
 }
 
 </style>
