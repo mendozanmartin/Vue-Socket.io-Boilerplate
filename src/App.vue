@@ -13,7 +13,7 @@ import router from './router';
   export default {
     data() {
       return {
-        socket : io('wvconsole.herokuapp.com')
+        socket : io()//enter name of website as argument
       }
     },
     created() {
@@ -24,7 +24,6 @@ import router from './router';
         this.socket.emit('disconnectionDetected', {
           roomID: window.mobileRoomNumber
         });
-        console.log('hello');
       }
     }
   }
